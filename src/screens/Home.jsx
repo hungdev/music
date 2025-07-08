@@ -83,62 +83,6 @@ const VibesMusicPlayer = () => {
     return emojis[index % emojis.length];
   };
 
-  // Refresh function to reload songs
-  const refreshSongs = async () => {
-    try {
-      setLoading(true);
-
-      const response = await axios.get("http://localhost:3001/api/music", {
-        timeout: 10000,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const data = response.data;
-
-      const mappedSongs = data.files.map((file, index) => ({
-        id: file.id,
-        title: file.title,
-        artist: file.artist,
-        album: file.album,
-        image: getEmojiForSong(file.title, index),
-        url: file.streamUrl,
-        cover: file.coverUrl,
-        duration: Math.floor(file.duration),
-        year: file.year,
-        genre: file.genre,
-        track: file.track,
-      }));
-
-      setSongs(mappedSongs);
-      setError(null);
-      setCurrentSongIndex(0); // Reset to first song
-      setCurrentTime(0);
-      setIsPlaying(false);
-
-      console.log("Songs refreshed successfully:", mappedSongs);
-    } catch (err) {
-      console.error("Error refreshing songs:", err);
-
-      let errorMessage = "Không thể kết nối tới server";
-
-      if (err.code === "ECONNABORTED") {
-        errorMessage = "Timeout - Server phản hồi chậm";
-      } else if (err.response) {
-        errorMessage = `Server error: ${err.response.status} - ${err.response.statusText}`;
-      } else if (err.request) {
-        errorMessage = "Không có phản hồi từ server - Kiểm tra kết nối mạng";
-      } else {
-        errorMessage = err.message;
-      }
-
-      setError(errorMessage);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // Custom Icons
   const PlayIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-10 h-10 text-gray-700">
