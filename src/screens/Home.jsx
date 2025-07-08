@@ -430,7 +430,7 @@ const VibesMusicPlayer = () => {
       </div>
 
       {/* Player Controls */}
-      <div className="bg-white border-t p-6">
+      <div className="bg-white border-t p-8 pb-6">
         {/* Progress Bar */}
         <div className="max-w-4xl mx-auto mb-6">
           <div className="flex justify-between text-sm text-gray-600 mb-2">
