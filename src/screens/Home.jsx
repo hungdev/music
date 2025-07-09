@@ -22,7 +22,7 @@ const VibesMusicPlayer = () => {
         setLoading(true);
 
         // Use axios instead of fetch
-        const response = await axios.get("http://localhost:3001/api/music", {
+        const response = await axios.get(`${import.meta.env.BASE_URL}/api/music`, {
           timeout: 10000, // 10 second timeout
           headers: {
             "Content-Type": "application/json",

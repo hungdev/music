@@ -39,11 +39,11 @@ const { Title, Text } = Typography;
 const { Dragger } = Upload;
 const { Search } = Input;
 
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = import.meta.env.BASE_URL;
 
 // Cấu hình axios
 const api = axios.create({
-  baseURL: API_BASE,
+  baseURL: `${API_BASE}/api`, // Sử dụng BASE_URL từ .env
   timeout: 30000, // 30 seconds timeout
   headers: {
     "Content-Type": "application/json",
