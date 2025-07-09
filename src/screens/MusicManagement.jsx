@@ -39,7 +39,7 @@ const { Title, Text } = Typography;
 const { Dragger } = Upload;
 const { Search } = Input;
 
-const API_BASE = import.meta.env.BASE_URL;
+const API_BASE = import.meta.env.VITE_BASE_URL;
 
 // Cấu hình axios
 const api = axios.create({
